@@ -2,7 +2,7 @@ package terminal
 
 import (
 	"fmt"
-	"github.com/wsxiaoys/terminal/color"
+	"github.com/kiyor/terminal/color"
 	"io"
 	"log"
 	"os"

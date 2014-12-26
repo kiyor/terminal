@@ -33,6 +33,8 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"strconv"
+	"strings"
 )
 
 const (
@@ -79,20 +81,33 @@ func Colorize(x string) string {
 	fg := 39
 	bg := 49
 
-	for _, key := range x {
-		c, ok := codeMap[int(key)]
-		switch {
-		case !ok:
-			log.Printf("Wrong color syntax: %c", key)
-		case 0 <= c && c <= 8:
-			attr = c
-		case 30 <= c && c <= 37:
-			fg = c
-		case 40 <= c && c <= 47:
-			bg = c
+	token := strings.Split(x, " ")
+	if f, err := strconv.Atoi(token[0]); err == nil {
+		res := fmt.Sprintf("\033[38;5;%dm", f)
+		if len(token) > 1 {
+			b, err := strconv.Atoi(token[1])
+			if err != nil {
+				log.Printf("Wrong color syntax: %s", token[1])
+			}
+			res += fmt.Sprintf("\033[48;5;%dm", b)
 		}
+		return res
+	} else {
+		for _, key := range x {
+			c, ok := codeMap[int(key)]
+			switch {
+			case !ok:
+				log.Printf("Wrong color syntax: %c", key)
+			case 0 <= c && c <= 8:
+				attr = c
+			case 30 <= c && c <= 37:
+				fg = c
+			case 40 <= c && c <= 47:
+				bg = c
+			}
+		}
+		return fmt.Sprintf("\033[%d;%d;%dm", attr, fg, bg)
 	}
-	return fmt.Sprintf("\033[%d;%d;%dm", attr, fg, bg)
 }
 
 // Handle state after meeting one '@'

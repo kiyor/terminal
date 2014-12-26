@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/wsxiaoys/terminal"
-	"github.com/wsxiaoys/terminal/color"
+	"github.com/kiyor/terminal"
+	"github.com/kiyor/terminal/color"
 )
 
 func main() {
@@ -12,4 +12,5 @@ func main() {
 		Colorf("@{kW}Hello world\n")
 
 	color.Print("@rHello world")
+	color.Print("@{216 8}Hello world")
 }

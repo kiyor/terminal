@@ -8,8 +8,8 @@ Terminal wraps color/format functions provided by [ANSI escape code](http://en.w
 package main
 
 import (
-  "github.com/wsxiaoys/terminal"
-  "github.com/wsxiaoys/terminal/color"
+  "github.com/kiyor/terminal"
+  "github.com/kiyor/terminal/color"
 )
 
 func main() {
@@ -19,6 +19,7 @@ func main() {
     Colorf("@{kW}Hello world\n")
 
   color.Print("@rHello world")
+  color.Print("@{216 8}Hello world")
 }
 ```
-Check the [godoc result](https://godoc.org/github.com/wsxiaoys/terminal) for more details.
+Check the [godoc result](https://godoc.org/github.com/kiyor/terminal) for more details.
